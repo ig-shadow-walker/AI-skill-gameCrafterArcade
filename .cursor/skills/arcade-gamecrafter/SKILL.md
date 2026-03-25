@@ -1,6 +1,6 @@
 ---
 name: arcade-gamecrafter
-description: Skill id arcade-gamecrafter for the ig-shadow-walker/gameCrafter repo. User must reference arcade + gamecrafter (e.g. arcade gamecrafter, @arcade-gamecrafter). Arcade-style Three.js games—score, waves, arena FPS, twin-stick, runners, survival slices, restart loops, config ramps. Phases Idea→build spec + template roadmap A–H. Prefers asking over assuming; step-by-step or autonomous pacing.
+description: Skill id arcade-gamecrafter for the ig-shadow-walker/gameCrafter repo. User must reference arcade + gamecrafter (e.g. arcade gamecrafter, @arcade-gamecrafter). Arcade-style Three.js games—score, waves, arena FPS, twin-stick, runners, survival slices, restart loops, config ramps. Phases Idea→build spec + template roadmap A–H. On first use in a task, ask whether to work autonomously or step-by-step with questions; prefers asking over assuming.
 ---
 
 # GameCrafter (arcade)
@@ -28,31 +28,37 @@ Apply when the user wants an **arcade-style** game: **score, time, waves, combos
 
 ---
 
-## Engagement mode (pacing — ask once if unclear)
+## Engagement mode (pacing — ask at start)
 
-Optional **pacing** preference; it does **not** override **Information first**. Even in “autonomous” pacing, **stop and ask** whenever you need more information (per above).
+**Pacing** preference does **not** override **Information first**. Even in “autonomous” pacing, **stop and ask** whenever you need more information (per above).
 
-Unless the user **already** stated how they want to work, you may **ask once**:
+### When you start using this skill
 
-> **How do you want to work?**  
-> **A — Step-by-step** — I use **clear checkpoints** after each phase (or roadmap letter), show outputs, and check in before big leaps—**and I still ask anytime** I need more detail, not only at those checkpoints.  
-> **B — Autonomous** — I keep momentum across phases and code with fewer **scheduled** pauses—**but I still ask questions whenever** something important is missing or fuzzy; I only **skip** questions for truly low-stakes defaults (and I log those as **Assumptions**).
+**Before** you do meaningful planning, spec work, or implementation for the user’s request, **ask them to choose how to work**—unless they **already** said (same thread) that they want autonomous pacing, step-by-step, or similar.
 
-Honor pacing for the **rest of the session** unless they switch.
+Use this prompt (adapt tone to the user; keep both options clear):
 
-### A — Step-by-step (interactive pacing)
+> **How do you want to work on this?**  
+> **1 — Autonomous** — I’ll drive the phases and implementation with momentum, listing **Assumptions** for small defaults, and I’ll still **stop and ask** when something important is missing or ambiguous.  
+> **2 — Step-by-step** — I’ll move in **clear steps** and **ask you questions along the way** to clarify before bigger leaps (plus checkpoints after each phase / roadmap letter when useful).
+
+After they pick, honor that mode for the **rest of the session** unless they switch.
+
+**If they don’t answer yet:** you may give a **one-line** acknowledgment of their goal, then **wait for their choice** before large work—or proceed only with **obvious, reversible** setup (e.g. reading files) while the question stands.
+
+### 1 — Autonomous pacing
+
+- Prefer **continuous** progress through Phases 1→7 and implementation.
+- Keep a running **Assumptions** list for inferred details—but **do not** hide uncertainty there: if you’re not confident, **ask** instead of assuming.
+- Same **ask-when-needed** rule as mode 2; the difference is **fewer mandatory review stops**, not fewer questions when information is missing.
+
+### 2 — Step-by-step (interactive pacing)
 
 - After each **game-design phase** (1–7), deliver the **output** and offer a **natural checkpoint** (summary + “continue?” or next phase preview)—unless the user asked you to barrel through.
 - **Anytime** you notice a gap that matters for what you’re about to write or build, **ask first**; you are not required to wait for the end of a phase.
 - Before starting heavy work on the **next** phase, use the **phase table** below so you don’t skip obvious questions.
 - If the user wants less chit-chat, offer **“Use sensible defaults for this chunk”** and still list what you assumed.
 - For **roadmap** work ([roadmap.md](roadmap.md) A–H), use the same idea: checkpoint after each **letter phase** (or a tiny pair like A+B), and **ask anytime** scaffolding choices are unclear.
-
-### B — Autonomous pacing
-
-- Prefer **continuous** progress through Phases 1→7 and implementation.
-- Keep a running **Assumptions** list for inferred details—but **do not** hide uncertainty there: if you’re not confident, **ask** instead of assuming.
-- Same **ask-when-needed** rule as mode A; the difference is **fewer mandatory review stops**, not fewer questions when information is missing.
 
 ### Clarifying questions — what to probe by phase
 
