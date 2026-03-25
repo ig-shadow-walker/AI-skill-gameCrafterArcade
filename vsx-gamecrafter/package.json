@@ -1,0 +1,49 @@
+{
+  "name": "gamecrafter",
+  "displayName": "GameCrafter",
+  "description": "Loads the GameCrafter Cursor Agent skill into your project (.cursor/skills).",
+  "version": "0.1.0",
+  "publisher": "ig-shadow-walker",
+  "license": "MIT",
+  "homepage": "https://github.com/ig-shadow-walker/gameCrafter/tree/main/vsx-gamecrafter",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ig-shadow-walker/gameCrafter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ig-shadow-walker/gameCrafter/issues"
+  },
+  "keywords": [
+    "cursor",
+    "gamecrafter",
+    "three.js",
+    "game",
+    "skill",
+    "agent"
+  ],
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "scripts": {
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.74.0",
+    "@vscode/vsce": "^3.2.2"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "gamecrafter.loadSkill",
+        "title": "GameCrafter: Load skill"
+      }
+    ]
+  }
+}

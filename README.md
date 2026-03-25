@@ -78,7 +78,7 @@ See `.cursor/skills/game-crafter/roadmap.md` (or the same path under `.claude`) 
 
 ## Credits
 
-**GameCrafter** was built by **shadow-walker**.
+**GameCrafter** was built by **[ig-shadow-walker](https://github.com/ig-shadow-walker)**.
 
 ---
 
