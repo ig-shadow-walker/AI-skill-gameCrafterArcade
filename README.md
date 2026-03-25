@@ -29,6 +29,15 @@ Game source code, assets, and build tooling can be added here as the project gro
 
 ---
 
+## Website (overview)
+
+A small static site in **`website/`** explains what GameCrafter is for visitors who are not reading the repo directly.
+
+- **Local:** open `website/index.html` in a browser, or from the repo root run `npx --yes serve website` and visit the URL it prints.
+- **GitHub Pages:** the classic branch UI only serves from **`/`** or **`/docs`**. Either copy `website/*` into **`docs/`**, or add a workflow that deploys **`website/`** to the `gh-pages` branch / GitHub Pages artifact; any static host (Netlify, Cloudflare Pages, etc.) can also point at `website/` as the publish directory.
+
+---
+
 ## The GameCrafter workflow (Idea → build spec)
 
 The skill teaches the agent to work **top-down** and produce concrete artifacts at each step. While building, the agent should **check in on vibe and lighting** (mood, palette, Three.js lights, fog, shadows) at sensible milestones instead of silently assuming a look.

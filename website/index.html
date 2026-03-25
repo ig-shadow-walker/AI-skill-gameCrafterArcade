@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="GameCrafter — a workspace and AI skill for designing arcade-style games with Three.js, from idea to build spec."
+    />
+    <title>GameCrafter — Arcade game design &amp; build</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="wrap">
+        <p class="badge">Workspace + agent skill</p>
+        <h1>GameCrafter</h1>
+        <p class="lead">
+          Design and build <strong>arcade-style</strong> 2D and 3D games—score, waves, short sessions, and tight restart
+          loops—for the web, tablets, mobile, and desktop. The default stack is
+          <strong>Three.js</strong> with TypeScript and Vite when you implement in this repo.
+        </p>
+        <p class="lead">
+          This project ships the <strong>arcade-gamecrafter</strong> skill for
+          <strong>Cursor</strong> and <strong>Claude Code</strong>: a structured pipeline from idea → design → systems →
+          build spec, tuned for reflex and “one more run” games—not sprawling RPG scope unless you scope an arcade slice.
+        </p>
+        <div class="cta-row">
+          <a
+            class="btn btn-primary"
+            href="https://github.com/ig-shadow-walker/gameCrafter"
+            rel="noopener noreferrer"
+            >View on GitHub</a
+          >
+          <a
+            class="btn"
+            href="https://github.com/ig-shadow-walker/gameCrafter/blob/main/README.md"
+            rel="noopener noreferrer"
+            >README on GitHub</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="skill">
+        <div class="wrap">
+          <h2>What’s in the repository</h2>
+          <p>
+            The skill lives in two places so each editor can discover it. Keep the copies aligned when you change the
+            workflow.
+          </p>
+          <table>
+            <thead>
+              <tr>
+                <th>Tool</th>
+                <th>Path</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Cursor</td>
+                <td><code>.cursor/skills/arcade-gamecrafter/</code></td>
+              </tr>
+              <tr>
+                <td>Claude Code</td>
+                <td><code>.claude/skills/arcade-gamecrafter/</code></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="card">
+            <p>
+              <strong>SKILL.md</strong> — Arcade-first phases (Idea → build spec), Three.js notes (including desktop +
+              mobile input patterns), vibe/lighting check-ins while building, shoot feedback defaults, and template
+              roadmap A–H.
+            </p>
+            <p>
+              <strong>roadmap.md</strong> — Checklist to grow the repo into a full starter (Vite, input, reference game,
+              PWA, CI).
+            </p>
+            <p>
+              <strong>reference.md</strong> — Build-spec skeleton, platforms, genre → control hints.
+            </p>
+          </div>
+          <p>
+            Invoke it in chat with phrases like <strong>arcade gamecrafter</strong> or
+            <strong>gameCrafter arcade</strong> (and <code>@arcade-gamecrafter</code> where supported). Mention
+            <strong>arcade</strong> and <strong>gamecrafter</strong> together so the skill description matches reliably.
+          </p>
+        </div>
+      </section>
+
+      <section id="workflow">
+        <div class="wrap">
+          <h2>Workflow (top-down)</h2>
+          <p>Agents following the skill produce concrete artifacts at each step—and check in on <strong>vibe</strong> and <strong>lighting</strong> while implementing.</p>
+          <ol class="steps">
+            <li><strong>Idea</strong> — Pitch, platforms, session length, inputs.</li>
+            <li><strong>Design</strong> — Core loop, camera/controls, fail state, pacing.</li>
+            <li><strong>Systems</strong> — World, player, combat, enemies, run flow, audio.</li>
+            <li><strong>Content</strong> — Geometry, layout, copy, placeholders.</li>
+            <li><strong>Presentation</strong> — HUD, juice, accessibility.</li>
+            <li><strong>Scope</strong> — MVP vs stretch.</li>
+            <li><strong>Build spec</strong> — Layout, loop, config, tests—then implement MVP first.</li>
+          </ol>
+          <p>
+            For <strong>shooting</strong> games, the skill expects <strong>visible feedback on each shot</strong> (e.g.
+            muzzle flash) unless you opt out.
+          </p>
+        </div>
+      </section>
+
+      <section id="use">
+        <div class="wrap">
+          <h2>How to use it</h2>
+          <h3>Cursor</h3>
+          <ol class="steps">
+            <li>Open this folder as the project root.</li>
+            <li>Start an Agent chat.</li>
+            <li>Describe your game or ask the agent to follow the arcade gamecrafter workflow.</li>
+          </ol>
+          <h3>Claude Code</h3>
+          <ol class="steps">
+            <li>Open this repository as the project.</li>
+            <li>Use <code>/arcade-gamecrafter</code> (if configured) or say arcade gamecrafter in natural language.</li>
+            <li>For long templates, point the agent at <code>reference.md</code>.</li>
+          </ol>
+          <p>
+            <a href="https://code.claude.com/docs/en/skills" rel="noopener noreferrer">Claude skills documentation</a>
+          </p>
+        </div>
+      </section>
+
+      <section id="roadmap">
+        <div class="wrap">
+          <h2>Template roadmap (A–H)</h2>
+          <p>When scaffolding the repo itself, agents follow <code>roadmap.md</code> in order. In short:</p>
+          <ul>
+            <li><strong>A–B</strong> — Vite + TypeScript + Three.js, resize/DPR, timestep.</li>
+            <li><strong>C–D</strong> — Input abstraction, HUD, <code>src/game</code> layout, example build spec.</li>
+            <li><strong>E</strong> — Minimal arcade reference game.</li>
+            <li><strong>F–H</strong> — PWA, optional wrapper, skill/code sync, CI.</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <p>
+          <strong>GameCrafter</strong> by
+          <a href="https://github.com/ig-shadow-walker" rel="noopener noreferrer">ig-shadow-walker</a>. This page is a
+          static overview; the canonical docs live in the repo <code>README.md</code> and skill files.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
