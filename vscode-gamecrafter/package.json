@@ -1,0 +1,53 @@
+{
+  "name": "gamecrafter",
+  "displayName": "GameCrafter",
+  "description": "Bundles the GameCrafter Cursor Agent Skill (Three.js game workflow + repo roadmap). Works in VS Code and Cursor.",
+  "version": "0.1.0",
+  "publisher": "shadow-walker",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shadow-walker/gameCrafter"
+  },
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "files": [
+    "extension.js",
+    "README.md",
+    ".cursor/skills/game-crafter/SKILL.md",
+    ".cursor/skills/game-crafter/reference.md",
+    ".cursor/skills/game-crafter/roadmap.md"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "gamecrafter.openSkill",
+        "title": "GameCrafter: Open SKILL.md"
+      },
+      {
+        "command": "gamecrafter.openReference",
+        "title": "GameCrafter: Open reference.md"
+      },
+      {
+        "command": "gamecrafter.openRoadmap",
+        "title": "GameCrafter: Open roadmap.md"
+      },
+      {
+        "command": "gamecrafter.revealBundledSkills",
+        "title": "GameCrafter: Reveal bundled skills folder in file manager"
+      },
+      {
+        "command": "gamecrafter.installSkillToWorkspace",
+        "title": "GameCrafter: Copy skill to workspace .cursor/skills/game-crafter"
+      }
+    ]
+  }
+}
