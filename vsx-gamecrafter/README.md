@@ -1,6 +1,8 @@
 # GameCrafter (Cursor / VS Code extension)
 
-Installs the **GameCrafter** Cursor Agent skill into **your project** by copying the bundled `.cursor/skills/game-crafter/` files into `<project>/.cursor/`. Cursor discovers skills from the workspace folder you have open.
+Installs the **arcade-gamecrafter** skill for **ig-shadow-walker/gameCrafter** into **your project** by copying the bundled `.cursor/skills/arcade-gamecrafter/` tree into `<project>/.cursor/`. Cursor discovers skills from the workspace folder you have open.
+
+**Invoke in chat** by mentioning **arcade** and **gamecrafter** / **gameCrafter**, or the skill id **`arcade-gamecrafter`** / **`@arcade-gamecrafter`** (if supported).
 
 ## Install (Cursor)
 
@@ -14,7 +16,7 @@ You can also install from a local `.vsix`: **Extensions → … → Install from
 
 - **GameCrafter: Load skill** (Command Palette) — copies the bundled skill into each workspace root (multi-root safe). Existing files at the same paths are overwritten.
 
-On first open of a project without `.cursor/skills/game-crafter/SKILL.md`, you get a one-time **Load skill** / **Skip** prompt.
+On first open of a project without `.cursor/skills/arcade-gamecrafter/SKILL.md`, you get a one-time **Load skill** / **Skip** prompt.
 
 ## Publish (Open VSX → Cursor)
 
@@ -44,7 +46,7 @@ Cursor’s extension gallery uses **Open VSX**, not the Microsoft Marketplace.
 
 ## Sync skill files before packaging
 
-After editing `.cursor/skills/game-crafter/*` in the parent repo, copy them into `vsx-gamecrafter/.cursor/skills/game-crafter/` before `npm run package`.
+After editing `.cursor/skills/arcade-gamecrafter/*` in the parent repo, copy them into `vsx-gamecrafter/.cursor/skills/arcade-gamecrafter/` before `npm run package`.
 
 Built by **[ig-shadow-walker](https://github.com/ig-shadow-walker)**.
 

@@ -68,7 +68,7 @@ function activate(context) {
   void (async () => {
     const folders = vscode.workspace.workspaceFolders;
     if (!folders?.length || context.workspaceState.get(WORKSPACE_PROMPT_KEY)) return;
-    const marker = vscode.Uri.joinPath(folders[0].uri, ".cursor", "skills", "game-crafter", "SKILL.md");
+    const marker = vscode.Uri.joinPath(folders[0].uri, ".cursor", "skills", "arcade-gamecrafter", "SKILL.md");
     try {
       await vscode.workspace.fs.stat(marker);
       return;

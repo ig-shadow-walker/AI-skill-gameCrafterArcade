@@ -1,13 +1,21 @@
 ---
-name: game-crafter
-description: GameCrafter workflow for planning and building 2D/3D Three.js games on web, tablet, mobile, and desktop. Parses natural-language game ideas (e.g. FPS zombie survival), runs Idea→design→systems→content→presentation→scope→build spec, then implements. Prefers asking the user over silent assumptions whenever more information would materially affect the game; optional step-by-step vs faster autonomous pacing. When scaffolding or extending the GameCrafter template repo, follows phased roadmap (Vite, engine glue, input, reference game, PWA, CI). Use for the gameCrafter project, GameCrafter, game-crafter, scaffolding this workspace, browser/mobile Three.js games, or a genre without a technical spec.
+name: arcade-gamecrafter
+description: Skill id arcade-gamecrafter for the ig-shadow-walker/gameCrafter repo. User must reference arcade + gamecrafter (e.g. arcade gamecrafter, @arcade-gamecrafter). Arcade-style Three.js games—score, waves, arena FPS, twin-stick, runners, survival slices, restart loops, config ramps. Phases Idea→build spec + template roadmap A–H. Prefers asking over assuming; step-by-step or autonomous pacing.
 ---
 
-# GameCrafter
+# GameCrafter (arcade)
+
+## How to invoke
+
+- **Skill id:** `arcade-gamecrafter` (folder `.cursor/skills/arcade-gamecrafter/`).
+- To load this playbook explicitly, the user should mention **arcade** and **gamecrafter** / **gameCrafter** together—e.g. “use **arcade gamecrafter**,” “follow the **gameCrafter** arcade skill,” or **`@arcade-gamecrafter`** (if the client supports `@` skills).
+- **Canonical repo:** **github.com/ig-shadow-walker/gameCrafter**—tie natural-language requests to that project name when matching this skill.
 
 ## When to use this skill
 
-Apply when the user describes a game in natural language (genre, fantasy, mechanics) and expects analysis, structure, and implementation—or when they explicitly want Three.js across web/tablet/mobile/desktop.
+Apply when the user wants an **arcade-style** game: **score, time, waves, combos, lives**, tight **restart loops**, **single-session** skill tests, arena or lane pressure, or cabinet-like “one more run” feel—even if they only say “FPS survival” or “dodge enemies.” Also apply when they want **Three.js** + **Vite** + **TypeScript** for web/tablet/mobile and the brief fits action/reflex play more than long-form RPG or open-world sim.
+
+**Out of scope default:** If they clearly want narrative-heavy RPG, MMO, or 20+ hour progression, say so and either narrow to an **arcade slice** (e.g. one combat arena) or recommend a different workflow.
 
 ## Information first (default)
 
@@ -52,13 +60,13 @@ Use this as a **prompt checklist** whenever you are about to enter the listed ph
 
 | Next phase | Clarify if missing |
 |------------|-------------------|
-| **2 Design** | Win/lose or endless rules; session length; which platform is **primary**; camera/control per platform |
-| **3 Systems** | Multiplayer/save needs; combat model (hitscan vs projectiles); progression (waves, meta, none) |
-| **4 Content** | Procedural vs authored levels; asset style (primitives vs GLTF); how much tutorial copy |
-| **5 Presentation** | DOM HUD vs in-scene UI; fullscreen/PWA priority; mobile performance strictness |
-| **6 Scope** | Non-negotiable MVP vs nice-to-have; deadline or “smallest slice” constraint |
-| **7 Build spec** | Repo constraints (existing folders, forbidden deps); test devices they care about |
-| **Implementation** | Branch/commit style; whether to stop after MVP build for playtest |
+| **2 Design** | **Game over** vs endless; **target run length** (e.g. 60s–5m); **primary score** (points, time alive, wave #); camera/control per platform |
+| **3 Systems** | **Lives / continues?**; hitscan vs projectiles; **wave or spawn ramp**; local **high score** or session-only; pooling for bullets/enemies |
+| **4 Content** | **Single arena vs lanes**; spawn layout; primitives vs GLTF for MVP; minimal **title / game over** copy |
+| **5 Presentation** | Score/time/**combo** HUD readability; **game over / restart** flow; juice budget on mobile; DOM HUD vs in-scene |
+| **6 Scope** | Smallest **one-more-run** loop; what proves **skill**, not content volume |
+| **7 Build spec** | Repo constraints; `config` keys for **difficulty ramp**; restart → **pointer lock / gesture** path if FPS |
+| **Implementation** | Playtest **one full run** (start → game over → restart) before feature creep |
 
 ---
 
@@ -67,6 +75,17 @@ Use this as a **prompt checklist** whenever you are about to enter the listed ph
 Work **top-down**: each phase produces artifacts the next phase consumes. Do not skip phases unless the user already supplied equivalent detail; then acknowledge and continue from the next gap. Follow **Information first** for when to ask vs assume; use **engagement mode** for how often to offer phase checkpoints, not as a reason to guess silently.
 
 Default stack unless the project already dictates otherwise: **Three.js** (r3f acceptable if the repo uses React), **TypeScript**, **Vite** for web. Prefer one renderer/scene for 3D; use **orthographic camera + planes/sprites** or **layered quads** for 2D-in-Three, or a **2D canvas/UI overlay** when appropriate.
+
+### Arcade defaults (bias the whole pipeline)
+
+Unless the user overrides, steer toward **short, replayable sessions** and **readable feedback**:
+
+- **Run structure:** **title / ready → playing → game over → restart** (or pause menu) is a first-class flow; not an afterthought.
+- **Goals:** **score**, **time survived**, **wave reached**, or **combo**—pick at least one measurable hook for Phase 2.
+- **Pressure:** **waves**, **spawn ramps**, or **speed-ups** over huge static worlds; single **arena**, **lanes**, or **chunks** beat sprawling maps for MVP.
+- **Tuning:** **one `config` module** for spawn interval, enemy counts, player speed, damage—see Phase 6 difficulty subsection.
+- **Juice:** hit feedback, brief SFX, HUD pulse—**cheap** on mobile (no heavy post stack by default).
+- **Progression:** **session-local** high score or best wave is enough; long meta-progression is **stretch**, not MVP.
 
 ### Which track first? (decision)
 
@@ -91,28 +110,30 @@ When the user asks to **set up, scaffold, or extend the GameCrafter workspace** 
 | B | Engine glue — resize/DPR cap, timestep or capped `dt`, disposal pattern |
 | C | Input & platforms — abstraction, optional pointer-lock path, HUD/safe area |
 | D | Layout & docs — `src/game`, `systems`, `render`, `public/assets`, example build spec |
-| E | Reference game — one minimal playable MVP (primitives OK) |
+| E | Reference game — **arcade** MVP: score/survive + restart (primitives OK) |
 | F | Distribution — PWA first; then optionally one wrapper (Capacitor or Tauri/Electron) |
 | G | Align skill ↔ code — update paths in SKILL/reference; optional rules or `CLAUDE.md` |
 | H | Polish — CI, LICENSE, performance checklist |
 
 If the user requests only a **subset** (e.g. “add PWA”), implement it and **state any missing prerequisites** they should complete first.
 
-**Game-design pipeline:** The sections **Phase 1 — Idea** through **Phase 7 — Build spec** below are for **any game title** (idea → spec → code). When the repo is **not** yet at roadmap **E**, treat **A → E** as the spine and fold Phases 1–7 into that pass where helpful. When the baseline exists, use Phases 1–7 + only the roadmap phases you still lack.
+**Game-design pipeline:** Phases **1–7** below are tuned for **arcade titles** (idea → spec → code). When the repo is **not** yet at roadmap **E**, treat **A → E** as the spine and fold Phases 1–7 into that pass where helpful. When the baseline exists, use Phases 1–7 + only the roadmap phases you still lack.
 
 ---
 
 ## Phase 1 — Idea
 
-**Goal:** Align on a concrete pitch and constraints.
+**Goal:** Align on a concrete **arcade** pitch and constraints.
 
 Extract and state explicitly:
 
-- Genre, reference games (if any), single-player vs multiplayer
-- Target platforms: phone, tablet, desktop browser, desktop app (Electron/Tauri), PWA
-- Session length (e.g. 3-minute run vs 20-minute mission)
-- Input assumptions: touch, gamepad, keyboard/mouse, pointer lock for FPS
-- Art/audio expectations: placeholder geom, procedural, or external assets
+- **Arcade subgenre** (arena FPS, twin-stick, runner, shmup, dodge/survival, brick-style, etc.) and reference games if any
+- **Single-player** default; multiplayer only if explicitly requested
+- Target platforms: phone, tablet, desktop browser, PWA / wrapper
+- **Target session:** e.g. 90s skill burst vs 5m survival run (avoid “campaign length” unless user insists)
+- **Score / fail state:** what ends a run and what the player chases (high score, wave, time)
+- Input: touch, gamepad, keyboard/mouse, **pointer lock** for first-person arcade
+- Art/audio: **primitives + procedural** default for MVP; GLTF as stretch
 
 **Output:** Short **idea brief** (5–10 bullets) the user can confirm.
 
@@ -120,15 +141,15 @@ Extract and state explicitly:
 
 ## Phase 2 — Design
 
-**Goal:** Core loop and player fantasy.
+**Goal:** Tight **core loop** and fantasy in **one sitting**.
 
 Define:
 
-- **Core loop** (repeatable cycle: e.g. explore → scavenge → survive wave → upgrade)
-- **Camera and control scheme** per platform (e.g. FPS: pointer lock + WASD on desktop; virtual dual-stick or tap-to-move on mobile)
-- **Win/lose** or endless/score conditions
-- **Pacing:** onboarding, difficulty curve, run length
-- **Mood:** lighting, color, audio cues (no need for final art)
+- **Core loop** (seconds-scale rhythm): e.g. **spawn pressure → player responds → score/combo → harder wave**; or **dodge → pick up → risk/reward**
+- **Camera and controls** per platform (FPS: pointer lock + WASD; twin-stick: move + aim; runner: lane switch + jump)
+- **Game over** rules (lives, one-hit, timer) and whether **endless** with escalating difficulty is OK
+- **Difficulty curve:** first 10–30s onboarding vs **ramp** (spawn config, speed, damage)—name when it should “kick in”
+- **Mood / read:** silhouette, color contrast, **HUD legibility** at a glance (arcade-first)
 
 **Output:** **Design one-pager** (sections above, 1–3 sentences each).
 
@@ -136,19 +157,20 @@ Define:
 
 ## Phase 3 — Systems
 
-**Goal:** Technical architecture for gameplay, not visuals.
+**Goal:** Technical architecture for **arcade** gameplay, not visuals.
 
 Inventory only what the game needs. Typical buckets:
 
 | Area | Examples |
 |------|----------|
-| World | Scene graph, levels/chunks, spawning, boundaries (**min distance from player**, retry or ring fallback so spawns never overlap the player) |
-| Player | Movement, stamina, health, interaction |
-| Combat | Weapons, damage, hit detection, feedback |
-| Enemies | AI states, pathing/simplifications, pooling |
-| Progression | Waves, score, unlocks, meta between runs |
-| Data | Config JSON, seeds, save (localStorage / IndexedDB if needed) |
-| Audio | SFX/music hooks, spatial if 3D |
+| World | **Arena or lane bounds**; **spawning** + waves; **min distance from player**, retry or ring fallback |
+| Player | Movement; **iframed** invuln or lives; interaction minimal unless genre needs it |
+| Combat | Hit detection (hitscan / projectile); **i-frames** or HP; **hit-stop / flash** (subtle, mobile-safe) |
+| Enemies | Simple chase / pattern / wave driver; **pooling** when counts spike |
+| Run flow | **Game state machine:** title → playing → **game over** → restart; pause optional |
+| Progression | **Score / combo / wave index**; `localStorage` high score optional; meta-unlocks = stretch |
+| Data | **`config.ts`** tunables; seeds only if procedural spawns need reproducibility |
+| Audio | **One-shot SFX** pool; `AudioContext.resume()` on gesture; music optional/stub |
 
 **Output:** **System list** with 1-line responsibility each and note dependencies (what must exist first).
 
@@ -156,14 +178,14 @@ Inventory only what the game needs. Typical buckets:
 
 ## Phase 4 — Content
 
-**Goal:** What exists in the build beyond code.
+**Goal:** What exists in the build beyond code **for an arcade MVP**.
 
 Plan:
 
-- **Geometry/textures:** primitives, procedural meshes, GLTF pipeline, sprite sheets
-- **Levels:** single arena vs procedural layout; spawn points; occlusion/visibility
-- **Copy:** UI strings, tutorial prompts
-- **Placeholder policy:** name what is stubbed for MVP
+- **Geometry:** primitives first; GLTF for hero/enemy only if scoped
+- **Layout:** **one arena** or fixed lane set; **spawn volumes** or edge points; keep visibility **readable**
+- **Copy:** **short**—how to start, how to restart, score labels; skip long tutorials unless requested
+- **Placeholder policy:** what stays greybox for v1
 
 **Output:** **Content checklist** mapped to MVP vs later.
 
@@ -171,14 +193,16 @@ Plan:
 
 ## Phase 5 — Presentation
 
-**Goal:** How it looks and feels on each device.
+**Goal:** **Readable arcade feel** on each device.
 
 Cover:
 
 - **Canvas lifecycle:** resize, `devicePixelRatio` cap on mobile, fullscreen where relevant
-- **UI/HUD:** DOM overlay vs Three.js (e.g. `CSS2DRenderer`) vs canvas 2D
-- **Post-processing:** use sparingly on mobile; prefer cheaper materials/fog
-- **Accessibility:** readable UI scale on small screens; optional reduced motion
+- **HUD:** **large** score, combo, lives, wave—**DOM overlay** often best; avoid tiny text over busy 3D
+- **Game over / pause:** clear **CTA** (restart, try again); **restart** must restore input affordances (e.g. pointer-lock click target)
+- **Juice:** muzzle flash, crosshair pulse, brief chroma—**budget** particles and lights for 60/30 FPS targets
+- **Post-processing:** sparing on mobile; materials/fog over heavy composers
+- **Accessibility:** readable UI; optional reduced motion (tone down shake/flash)
 
 **Output:** **Presentation notes** tied to platform (what differs on phone vs desktop).
 
@@ -186,24 +210,24 @@ Cover:
 
 ## Phase 6 — Scope
 
-**Goal:** Shippable slice vs backlog.
+**Goal:** **One shippable arcade slice** vs backlog.
 
 Produce:
 
-- **MVP:** smallest playable that proves the core loop
-- **Cut list:** deferred systems/content with reasons
-- **Stretch goals:** ordered after MVP
-- **Milestones:** e.g. greybox → systems → content pass → polish
+- **MVP:** smallest loop that delivers **start → pressure → score/game over → restart**
+- **Cut list:** deferred systems (meta, skins, many enemy types) with reasons
+- **Stretch goals:** extra waves, bosses, cosmetics—**after** core loop is fun
+- **Milestones:** greybox arena → **run flow** → spawn ramp → juice pass
 
 **Output:** **Scope table** (MVP / stretch / cut).
 
-### Difficulty & pacing (config) — optional but recommended for arcade / waves
+### Difficulty & pacing (config) — core for arcade
 
-Encode tuning in **`config.ts` (or one module)** instead of scattering magic numbers:
+Encode tuning in **`config.ts` (or one module)**—arcade quality lives here:
 
-- **Time variable:** e.g. survival time while “in run” / pointer locked; use it to drive ramps.
-- **Curves:** **lerp** or easing from **starting values** toward **asymptotic caps** (e.g. spawn interval high → low; enemies per wave low → high).
-- **Name keys explicitly:** e.g. `spawnIntervalStart`, `spawnIntervalMin`, `spawnRampSeconds`, `perSpawnStart`, `perSpawnMax` so Phase 7 and code stay aligned.
+- **Time variable:** e.g. `timeInRun`, wave index, or pointer-locked play time—drive ramps from it.
+- **Curves:** **lerp** or easing from **starting values** toward **asymptotic caps** (spawn interval, enemies per wave, speed multipliers).
+- **Name keys explicitly:** e.g. `spawnIntervalStart`, `spawnIntervalMin`, `spawnRampSeconds`, `perSpawnStart`, `perSpawnMax`, `enemySpeedMulPerWave` so Phase 7 and code stay aligned.
 
 ---
 
@@ -217,11 +241,12 @@ Before coding, emit a **build spec** containing:
 2. **Repo layout** (directories: `src/game`, `src/systems`, assets, public)
 3. **Entry points** and game loop (init → update → render)
 4. **Module boundaries** (player, enemies, weapons, UI, audio)
-5. **Config surface** (constants file or JSON for tuning); for wave/survival games, include **difficulty ramp keys** (see Phase 6 optional subsection)
+5. **Config surface** (constants or JSON); **difficulty ramp keys** are required for wave/survival arcade (see Phase 6)
 6. **Platform notes:** pointer lock guard, touch controls, safe areas, build commands for web + optional wrapper
 7. **Performance budget:** target FPS, max lights, pooling rules, draw-call awareness
 8. **Spawning / bounds:** `minSpawnDistanceFromPlayer`, separate **margins** for player vs larger enemies, **clamp after movement** each frame to avoid tunneling into walls
-9. **Test plan:** manual steps per platform
+9. **Test plan:** manual **full run** per platform (start → game over → restart); pointer lock path if FPS
+10. **Score persistence** (optional): `localStorage` key names if high score is in MVP
 
 Then implement **MVP first** in small commits; match existing project patterns.
 
@@ -232,9 +257,10 @@ Then implement **MVP first** in small commits; match existing project patterns.
 - **Resize:** listen to `resize` / visual viewport; update camera aspect and `renderer.setSize` (and limits on DPR).
 - **FPS on web:** request pointer lock on user gesture; handle unlock and UI state.
 - **Mobile:** large touch targets; avoid tiny HUD text; reduce shadow/post FX defaults.
-- **2D:** orthographic camera with consistent units; consider one texture atlas for sprites.
-- **Pooling:** reuse objects for bullets, enemies, particles when counts spike.
-- **Loading:** `LoadingManager` or async setup; show progress for large assets.
+- **2D arcade:** orthographic camera with **consistent world units**; one atlas for sprites when using quads.
+- **Pooling:** **mandatory** for bullets, enemies, pickups, particles when wave counts climb.
+- **Loading:** keep MVP asset set small; async setup with a simple “press start” gate if needed.
+- **Arcade perf:** cap active particles/lights; prefer **instancing** or merged geometry for many similar props; profile on target phones.
 
 ### Web FPS + DOM HUD checklist
 

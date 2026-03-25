@@ -1,8 +1,8 @@
 # GameCrafter template repository roadmap
 
-Use this **in order** when scaffolding or extending the **GameCrafter** workspace (the starter/tooling repo). Skip only when the user explicitly limits scope; then call out missing prerequisites.
+Use this **in order** when scaffolding or extending the **GameCrafter** workspace (the starter/tooling repo). The **reference game** (Phase E) should demonstrate a **small arcade loop** (score or survive + restart), not only a rotating cube—see Phase E. Skip only when the user explicitly limits scope; then call out missing prerequisites.
 
-**Do not confuse** with the game-design phases in `SKILL.md` (Idea → … → build spec). Those apply to **any game title**. This file applies to **making the repo itself** a useful template.
+**Do not confuse** with the game-design phases in `SKILL.md` (Idea → … → build spec). Those apply to **arcade-style titles** you build inside the repo. This file applies to **making the repo itself** a useful template.
 
 ---
 
@@ -41,7 +41,7 @@ Use this **in order** when scaffolding or extending the **GameCrafter** workspac
 ## Phase D — Folder layout and documentation
 
 10. Create **stable layout:** e.g. `src/game/`, `src/systems/`, `src/render/`, `public/assets/`, `src/game/config.ts` (tunables).
-11. Add **`docs/`** or **`templates/`** with a **filled example** of a Phase-7-style build spec for a tiny sample game (cube collector, walk-in-box, etc.).
+11. Add **`docs/`** or **`templates/`** with a **filled example** of a Phase-7-style build spec for a tiny **arcade** sample (dodge + score, survive waves, collect N in time, etc.).
 
 **Exit criteria:** New features have an obvious home; humans see a concrete “finished spec” example.
 
@@ -49,10 +49,10 @@ Use this **in order** when scaffolding or extending the **GameCrafter** workspac
 
 ## Phase E — Reference game (template MVP)
 
-12. Ship **one minimal playable** using the layout: e.g. walk in a box, top-down mover + one obstacle, or collect N pickups—**primitives only**, no heavy assets.
+12. Ship **one minimal arcade-style playable** using the layout: e.g. **survive spawning hazards** with score/time, **twin-stick-lite** arena with waves, **dodge + pickup** with game over, or **FPS arena** slice—**primitives only**, no heavy assets. Must include **start → play → game over (or win stub) → restart** or equivalent run boundary.
 13. Document **how to replace** primitives with GLTF later (single paragraph or link).
 
-**Exit criteria:** `npm run dev` demonstrates a tiny **core loop**, not only a tech demo.
+**Exit criteria:** `npm run dev` demonstrates a **repeatable arcade core loop**, not only a tech demo.
 
 ---
 
@@ -67,7 +67,7 @@ Use this **in order** when scaffolding or extending the **GameCrafter** workspac
 
 ## Phase G — Skill and code alignment
 
-16. Update **`SKILL.md` / `reference.md` / `roadmap.md`** (both `.cursor` and `.claude` copies) so examples reference **real paths** and **npm scripts** in this repo.
+16. Update **`SKILL.md` / `reference.md` / `roadmap.md`** under **`.cursor/skills/arcade-gamecrafter/`** and **`.claude/skills/arcade-gamecrafter/`** so examples reference **real paths** and **npm scripts** in this repo.
 17. Optional: **`.cursor/rules`** or root **`CLAUDE.md`**: “Reuse existing resize/input modules; do not duplicate engine glue.”
 18. After a **substantial gameplay pass** (new HUD patterns, `config` keys, spawn rules), fold those into the skill docs so the **next** agent session matches the **current** code.
 
@@ -77,9 +77,9 @@ Use this **in order** when scaffolding or extending the **GameCrafter** workspac
 
 ## Phase H — Polish
 
-18. **CI:** typecheck + build on push (e.g. GitHub Actions).
-19. **LICENSE** (and CONTRIBUTING if collaborative).
-20. **Performance checklist** in repo (draw calls, lights, pooling)—mirror the skill’s review list for quick audits.
+19. **CI:** typecheck + build on push (e.g. GitHub Actions).
+20. **LICENSE** (and CONTRIBUTING if collaborative).
+21. **Performance checklist** in repo (draw calls, lights, pooling)—mirror the skill’s review list for quick audits.
 
 **Exit criteria:** Contributors get fast feedback; legal/perf expectations are explicit.
 

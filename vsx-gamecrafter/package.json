@@ -1,7 +1,7 @@
 {
   "name": "gamecrafter",
   "displayName": "GameCrafter",
-  "description": "Loads the GameCrafter Cursor Agent skill into your project (.cursor/skills).",
+  "description": "Loads the arcade-gamecrafter skill (ig-shadow-walker/gameCrafter) into .cursor/skills/arcade-gamecrafter/.",
   "version": "0.1.0",
   "publisher": "ig-shadow-walker",
   "license": "MIT",
@@ -15,6 +15,7 @@
   },
   "keywords": [
     "cursor",
+    "arcade-gamecrafter",
     "gamecrafter",
     "three.js",
     "game",
