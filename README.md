@@ -8,14 +8,20 @@ This repository is intentionally oriented around a **structured creative pipelin
 
 ## What lives in this project
 
-Right now the repo holds the **Cursor Agent Skill** named **`game-crafter`**, under:
+The same **game-crafter** skill is checked in twice so **Cursor** and **Claude Code** can each load it from their conventional paths:
 
-`.cursor/skills/game-crafter/`
+| Tool | Path |
+|------|------|
+| Cursor | `.cursor/skills/game-crafter/` |
+| Claude Code | `.claude/skills/game-crafter/` |
 
 | File | Purpose |
 |------|---------|
-| `SKILL.md` | Main instructions for the AI: phases, outputs, Three.js reminders, and when to apply the workflow. |
+| `SKILL.md` | Main instructions: game-design phases (Idea → build spec), Three.js reminders, and **template repo roadmap** (phases A–H) for scaffolding this workspace. |
+| `roadmap.md` | Step-by-step checklist for turning the repo into a full starter kit (Vite baseline → engine glue → input → layout → reference game → PWA → skill/code sync → CI). |
 | `reference.md` | Deeper templates (build spec skeleton, platform matrix, genre → camera/control hints). |
+
+The Claude Code copy of `SKILL.md` includes a short note about the **`/game-crafter`** slash command; otherwise keep **all three files** in `.cursor` and `.claude` copies aligned when you change the workflow.
 
 Game source code, assets, and build tooling can be added here as the project grows; the skill is meant to guide both **analysis** and **implementation** in that same tree.
 
@@ -47,13 +53,26 @@ The skill’s YAML **description** helps Cursor attach it when you talk about Th
 
 ---
 
+## Using the skill in Claude Code
+
+1. Open this repository as the **project** in Claude Code (so `.claude/skills/` is discovered).  
+2. Run **`/game-crafter`** to load the full playbook, or describe your game in natural language; Claude can auto-invoke the skill when your message matches its **description**.  
+3. For long templates, Claude can read `.claude/skills/game-crafter/reference.md` when needed.
+
+Official reference: [Extend Claude with skills](https://code.claude.com/docs/en/skills).
+
+---
+
 ## Roadmap (suggested)
 
-- Scaffold a **Vite + TypeScript + Three.js** app under `src/`.  
-- Add shared **resize / DPR / input** helpers for desktop vs touch.  
-- Optionally add **PWA**, **Capacitor**, or **Electron/Tauri** when you want store-ready or desktop shells.  
+The **game-crafter** skill encodes a full **template repository roadmap** (phases **A–H**) in `roadmap.md`—agents follow it when you ask to scaffold or extend this repo. In short:
 
-The skill is written to stay aligned with that direction.
+- **A–B:** Vite + TypeScript + Three.js, then resize/DPR, timestep, disposal.  
+- **C–D:** Input abstraction + HUD/safe area, then `src/game` layout and an example build spec.  
+- **E:** One minimal reference game (primitives).  
+- **F–H:** PWA, optional wrapper, align docs/skills with real paths, CI and LICENSE.
+
+See `.cursor/skills/game-crafter/roadmap.md` (or the same path under `.claude`) for the full checklist and exit criteria.
 
 ---
 

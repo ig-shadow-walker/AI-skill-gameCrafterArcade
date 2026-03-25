@@ -5,6 +5,8 @@ description: GameCrafter workflow for planning and building 2D/3D Three.js games
 
 # GameCrafter
 
+In **Claude Code**, run **`/game-crafter`** to load this playbook, or describe a game in natural language; Claude can also activate this skill automatically when your request matches the description above.
+
 ## When to use this skill
 
 Apply when the user describes a game in natural language (genre, fantasy, mechanics) and expects analysis, structure, and implementation—or when they explicitly want Three.js across web/tablet/mobile/desktop.
