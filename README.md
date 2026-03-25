@@ -29,14 +29,46 @@ Game source code, assets, and build tooling can be added here as the project gro
 
 ---
 
-## Website (overview)
+## Website
 
-A small static site in **`website/`** explains what GameCrafter is for visitors who are not reading the repo directly.
+Overview of **GameCrafter Arcade** for visitors: **[ig-shadow-walker.github.io/AI-skill-gameCrafterArcade](https://ig-shadow-walker.github.io/AI-skill-gameCrafterArcade/)**
 
-- **Local:** open `website/index.html` in a browser, or from the repo root run `npx --yes serve website` and visit the URL it prints.
-- **GitHub Pages (your account):** push this repo to GitHub. In **Settings → Pages → Build and deployment**, set **Source** to **GitHub Actions** (not “Deploy from a branch” unless you use the `docs/` method below). Open **Actions**, confirm **Deploy website to GitHub Pages** is green. The first run may ask you to **approve** the `github-pages` environment (**Settings → Environments**). The site URL is **`https://<username>.github.io/<repo>/`** (also shown on **Settings → Pages** and in the workflow summary). The workflow runs on pushes to **`main`** or **`master`**.
-- **If the site does not load:** (1) Source must be **GitHub Actions**. (2) Latest workflow run must succeed (check the **Deploy to GitHub Pages** step). (3) Wait a minute after green, hard-refresh, try a **private/incognito** window. (4) **Private repos:** GitHub Pages may require a **paid** plan for some account types—use a **public** repo to verify. (5) URL is case-sensitive for the **repo name** segment.
-- **Alternatives:** copy `website/*` into **`docs/`** and set Pages source to **Deploy from branch** → **`main`** → **`/docs`**; or use Netlify / Cloudflare Pages with **`website`** as the publish directory.
+---
+
+## Cursor — installation and usage
+
+### Installation
+
+1. **Get the repository**  
+   Clone this repo, or download it as a ZIP and unpack it on your machine.
+
+2. **Open it as the Cursor workspace**  
+   In Cursor: **File → Open Folder…** and choose the **repository root** (the folder that contains `.cursor/`).  
+   Cursor loads **project skills** from `.cursor/skills/` when that folder is the active project root.
+
+3. **Confirm the skill is present**  
+   You should have at least:  
+   `.cursor/skills/arcade-gamecrafter/SKILL.md`  
+   plus `roadmap.md` and `reference.md` in the same folder. If anything is missing, re-clone or copy the folder from this repo.
+
+4. **Use the skill inside another project (optional)**  
+   To add **arcade-gamecrafter** to a different game repo, copy the entire directory  
+   `.cursor/skills/arcade-gamecrafter/`  
+   into your other project’s  
+   `.cursor/skills/`  
+   (create `skills` if it does not exist). Keep `SKILL.md`, `roadmap.md`, and `reference.md` together.
+
+5. **Cursor version**  
+   Use a current Cursor build with **Agent** and **project skills** support so skills under `.cursor/skills/` are discoverable.
+
+### Usage
+
+1. Open an **Agent** chat in Cursor with this folder as the project root (or the project where you copied the skill).  
+2. Ask the agent to follow the **arcade gamecrafter** workflow—mention **arcade** and **gamecrafter** together (e.g. “use arcade gamecrafter”) so the skill description matches reliably. If your Cursor build supports it, you can also try **`@arcade-gamecrafter`** or a configured slash command.  
+3. For long templates, tell the agent to read `.cursor/skills/arcade-gamecrafter/reference.md`.  
+4. Optionally work **phase by phase** (Idea → build spec) before writing a lot of code.
+
+The skill’s YAML **description** is tuned for **arcade** + **gamecrafter** wording; matching both helps auto-invocation and search.
 
 ---
 
@@ -53,16 +85,6 @@ The skill teaches the agent to work **top-down** and produce concrete artifacts 
 7. **Build spec** — Repo layout, game loop, modules, config, platform notes, performance budget, manual test checklist—then **implement MVP first**.
 
 Default implementation assumptions (unless the repo already says otherwise): **Three.js**, **TypeScript**, **Vite** for the web; **React Three Fiber** only if the project already uses React.
-
----
-
-## Using the skill in Cursor
-
-1. Open this folder as the **project root** in Cursor.  
-2. Start an **Agent** chat.  
-3. Describe the game you want, or ask the agent to follow **`arcade gamecrafter`** / **`@arcade-gamecrafter`** / the **gameCrafter** arcade workflow (and optionally **phase by phase** before coding).  
-
-The skill’s YAML **description** expects **arcade** + **gamecrafter** and the **ig-shadow-walker/gameCrafter** repo name for reliable matching. For templates, the agent can read `reference.md`.
 
 ---
 
