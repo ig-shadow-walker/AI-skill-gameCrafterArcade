@@ -64,7 +64,7 @@ Overview of **GameCrafter Arcade** for visitors: **[ig-shadow-walker.github.io/A
 ### Usage
 
 1. Open an **Agent** chat in Cursor with this folder as the project root (or the project where you copied the skill).  
-2. Ask the agent to follow the **arcade gamecrafter** workflow—mention **arcade** and **gamecrafter** together (e.g. “use arcade gamecrafter”) so the skill description matches reliably. If your Cursor build supports it, you can also try **`@arcade-gamecrafter`** or a configured slash command.  
+2. Run **`/arcade-gamecrafter`** if you configured that slash command in Cursor (or your chosen **`/<command>`** name), **or** ask the agent to follow the **arcade gamecrafter** workflow using **arcade** and **gamecrafter** together in natural language (e.g. “use arcade gamecrafter”) so the skill description matches reliably.  
 3. For long templates, tell the agent to read `.cursor/skills/arcade-gamecrafter/reference.md`.  
 4. Optionally work **phase by phase** (Idea → build spec) before writing a lot of code.
 
@@ -88,11 +88,38 @@ Default implementation assumptions (unless the repo already says otherwise): **T
 
 ---
 
-## Using the skill in Claude Code
+## Claude Code — installation and usage
 
-1. Open this repository as the **project** in Claude Code (so `.claude/skills/` is discovered).  
-2. Run **`/arcade-gamecrafter`** (if configured) or say **arcade gamecrafter** / **gameCrafter arcade**; Claude can auto-invoke when your message matches the skill **description**.  
-3. For long templates, Claude can read `.claude/skills/arcade-gamecrafter/reference.md` when needed.
+### Installation
+
+1. **Get the repository**  
+   Clone this repo, or download it as a ZIP and unpack it on your machine.
+
+2. **Open it as the Claude Code project**  
+   Open this folder as the **project root** in Claude Code (the directory that contains `.claude/`).  
+   Claude Code discovers **project skills** under `.claude/skills/` for that workspace.
+
+3. **Confirm the skill is present**  
+   You should have at least:  
+   `.claude/skills/arcade-gamecrafter/SKILL.md`  
+   plus `roadmap.md` and `reference.md` in the same folder. If anything is missing, re-clone or copy the folder from this repo.
+
+4. **Use the skill inside another project (optional)**  
+   To add **arcade-gamecrafter** to a different repo, copy the entire directory  
+   `.claude/skills/arcade-gamecrafter/`  
+   into your other project’s  
+   `.claude/skills/`  
+   (create `skills` if it does not exist). Keep `SKILL.md`, `roadmap.md`, and `reference.md` together.
+
+5. **Configure the slash command (optional)**  
+   In Claude Code, add or map a slash command so you can invoke the skill as **`/arcade-gamecrafter`** (or another **`/<name>`** you prefer). See [Extend Claude with skills](https://code.claude.com/docs/en/skills) for how skills and commands are registered in your setup.
+
+### Usage
+
+1. Start a session with this repository (or the project where you copied the skill) as the active project.  
+2. Run **`/arcade-gamecrafter`** if you configured that slash command, **or** describe what you want using **arcade** and **gamecrafter** together (e.g. “follow arcade gamecrafter”) so the skill **description** matches and Claude can auto-invoke the skill.  
+3. For long templates, ask Claude to read `.claude/skills/arcade-gamecrafter/reference.md`.  
+4. Optionally work **phase by phase** (Idea → build spec) before heavy implementation.
 
 Official reference: [Extend Claude with skills](https://code.claude.com/docs/en/skills).
 

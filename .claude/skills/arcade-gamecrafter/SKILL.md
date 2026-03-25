@@ -1,6 +1,6 @@
 ---
 name: arcade-gamecrafter
-description: Skill id arcade-gamecrafter for the ig-shadow-walker/gameCrafter repo. User must reference arcade + gamecrafter (e.g. arcade gamecrafter, @arcade-gamecrafter). Arcade-style Three.js games—score, waves, arena FPS, twin-stick, runners, survival slices, restart loops, config ramps. Shooting games require visible shoot feedback (e.g. muzzle flash) on every shot unless user opts out. Input—GameActionState + desktop/mobile binders, pointer-lock-safe fire, touch mode (see SKILL Input handling architecture). While building, ask about vibe and lighting at sensible milestones. Phases Idea→build spec + template roadmap A–H. Prefers asking over assuming; step-by-step or autonomous pacing.
+description: Skill id arcade-gamecrafter for the ig-shadow-walker/gameCrafter repo. User must reference arcade + gamecrafter (e.g. arcade gamecrafter, /arcade-gamecrafter slash command). Arcade-style Three.js games—score, waves, arena FPS, twin-stick, runners, survival slices, restart loops, config ramps. Shooting games require visible shoot feedback (e.g. muzzle flash) on every shot unless user opts out. Input—GameActionState + desktop/mobile binders, pointer-lock-safe fire, touch mode (see SKILL Input handling architecture). While building, ask about vibe and lighting at sensible milestones. Phases Idea→build spec + template roadmap A–H. Prefers asking over assuming; step-by-step or autonomous pacing.
 ---
 
 # GameCrafter (arcade)
@@ -8,7 +8,7 @@ description: Skill id arcade-gamecrafter for the ig-shadow-walker/gameCrafter re
 ## How to invoke
 
 - **Skill id:** `arcade-gamecrafter` (folder `.cursor/skills/arcade-gamecrafter/`).
-- To load this playbook explicitly, the user should mention **arcade** and **gamecrafter** / **gameCrafter** together—e.g. “use **arcade gamecrafter**,” “follow the **gameCrafter** arcade skill,” or **`@arcade-gamecrafter`** (if the client supports `@` skills).
+- To load this playbook explicitly, the user should mention **arcade** and **gamecrafter** / **gameCrafter** together—e.g. “use **arcade gamecrafter**,” “follow the **gameCrafter** arcade skill,” or run **`/arcade-gamecrafter`** (or another configured **`/<command>`**) where slash commands are set up.
 - **Canonical repo:** **github.com/ig-shadow-walker/gameCrafter**—tie natural-language requests to that project name when matching this skill.
 
 ## When to use this skill
