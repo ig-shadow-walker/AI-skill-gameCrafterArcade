@@ -57,6 +57,8 @@ public/
 | Look | ... | ... | ... |
 | Fire | ... | ... | ... |
 
+For **Three.js FPS + touch**, use the canonical pattern in **`SKILL.md` → Input handling architecture** (logical `GameActionState`, `input.ts` / `inputMobile.ts` binders, `sessionActive`, unified `(sx, sy)` movement, pointer-lock fire gating).
+
 ## Content (MVP)
 - [ ] ...
 
@@ -111,7 +113,7 @@ These are defaults; adjust to user requirements and scope.
 
 - **Stack:** pointer lock + WASD + **hitscan** (or projectiles); **one `config` module** for weapon, enemy tuning, **spawn curve**, arena **margins**.
 - **MVP slice:** bounded **arena**, chase AI, **contact or ranged** damage, **shoot feedback** (audio/visual), **time or score HUD**, **restart** that restores pointer-lock affordance (blocker/instructions).
-- Cross-check **Web FPS + DOM HUD** and **spawning** in `SKILL.md` before calling the slice done.
+- Cross-check **Web FPS + DOM HUD**, **Input handling architecture**, and **spawning** in `SKILL.md` before calling the slice done.
 
 ### Endless runner / lane (arcade slice)
 

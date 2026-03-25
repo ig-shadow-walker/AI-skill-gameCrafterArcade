@@ -2,13 +2,15 @@
 
 **GameCrafter** is a workspace for designing and building **arcade-style 2D and 3D games** (score, waves, short sessions, restart loops) that target the **web, tablets, mobile devices, and desktop** (including wrapped or native-style apps). The technical backbone is **[Three.js](https://threejs.org/)**—full 3D or 2D-style via orthographic cameras, quads, sprites, and UI layers.
 
+The **arcade-gamecrafter** skill bundled here is **for arcade games specifically**: short, replayable sessions, clear score or survival pressure, and tight restart loops—not long-form RPGs or open-world scope unless you deliberately narrow the brief to an arcade slice.
+
 This repository is intentionally oriented around a **structured creative pipeline** so that high-level ideas (for example, “a first-person zombie survival arena” or “twin-stick wave shooter”) can be broken down into something implementable without skipping planning.
 
 ---
 
 ## What lives in this project
 
-The **arcade-gamecrafter** skill (skill id + folder name) is checked in twice so **Cursor** and **Claude Code** can each load it from their conventional paths:
+The **arcade-gamecrafter** skill (skill id + folder name) teaches agents to plan and implement **arcade-style** games—waves, combos, skill checks, and “one more run” flow—using the phases and roadmap below. It is checked in twice so **Cursor** and **Claude Code** can each load it from their conventional paths:
 
 | Tool | Path |
 |------|------|
@@ -29,7 +31,7 @@ Game source code, assets, and build tooling can be added here as the project gro
 
 ## The GameCrafter workflow (Idea → build spec)
 
-The skill teaches the agent to work **top-down** and produce concrete artifacts at each step:
+The skill teaches the agent to work **top-down** and produce concrete artifacts at each step. While building, the agent should **check in on vibe and lighting** (mood, palette, Three.js lights, fog, shadows) at sensible milestones instead of silently assuming a look.
 
 1. **Idea** — Genre, platforms, session length, inputs, asset expectations; short brief for confirmation.  
 2. **Design** — Core loop, camera/controls per device, win/lose, pacing, mood.  

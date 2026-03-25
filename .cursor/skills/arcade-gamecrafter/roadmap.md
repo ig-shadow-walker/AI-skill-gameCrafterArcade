@@ -28,7 +28,7 @@ Use this **in order** when scaffolding or extending the **GameCrafter** workspac
 
 ## Phase C — Input and platforms
 
-7. **Input abstraction:** map logical actions (move, look, fire, interact) separately from raw keyboard/mouse/touch.
+7. **Input abstraction:** map logical actions separately from raw events—follow **`SKILL.md` → Input handling architecture** (`GameActionState`, desktop vs mobile binders, pointer-lock-safe fire, touch mode, unified stick/keyboard movement).
 8. **Pointer lock (optional path):** behind explicit UI gesture for FPS-style desktop; **do not** rely on pointer lock on mobile.
 9. **HUD / safe area:** DOM overlay (or documented pattern) that works with fullscreen canvas and readable tap targets on phones.
 
