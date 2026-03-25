@@ -34,6 +34,8 @@ Use this **in order** when scaffolding or extending the **GameCrafter** workspac
 
 **Exit criteria:** One code path can drive desktop + touch without forking the whole game loop.
 
+**FPS / pointer-lock exit check (when the reference game or MVP is FPS-style):** With pointer locked, **primary fire** works reliably; **restart** returns to a state where the user can **lock again**; the **HUD** does not steal clicks incorrectly (`pointer-events`, `[hidden]` vs CSS `display`—see `SKILL.md` Web FPS checklist).
+
 ---
 
 ## Phase D — Folder layout and documentation
@@ -67,6 +69,7 @@ Use this **in order** when scaffolding or extending the **GameCrafter** workspac
 
 16. Update **`SKILL.md` / `reference.md` / `roadmap.md`** (both `.cursor` and `.claude` copies) so examples reference **real paths** and **npm scripts** in this repo.
 17. Optional: **`.cursor/rules`** or root **`CLAUDE.md`**: “Reuse existing resize/input modules; do not duplicate engine glue.”
+18. After a **substantial gameplay pass** (new HUD patterns, `config` keys, spawn rules), fold those into the skill docs so the **next** agent session matches the **current** code.
 
 **Exit criteria:** Agents and humans are not pointed at missing files or outdated layout.
 

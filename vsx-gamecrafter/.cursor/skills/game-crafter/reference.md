@@ -55,6 +55,18 @@ public/
 - Max dynamic lights: ...
 - Pooling: ...
 
+## Spawning rules (optional; FPS / arena)
+- `minSpawnDistanceFromPlayer`: ...
+- Max random pick attempts before fallback
+- Fallback: ring or fixed spawn points around arena edge
+
+## Combat feedback (optional)
+- Hitscan tracer or debug line, muzzle HUD flash, crosshair pulse
+- Procedural or pooled SFX module (gesture-unlocked `AudioContext`)
+
+## Types / toolchain (optional)
+- Some **Three.js** npm setups need **`@types/three`** for `tsc --noEmit`; keep **`three`** and **`@types/three`** versions aligned per project docs.
+
 ## Build and run
 - `npm run dev` / `npm run build`
 - Optional: PWA manifest, Capacitor/Electron notes
@@ -82,3 +94,9 @@ public/
 | 2D sidescroller | Ortho side-on | Arrows / space | Touch left/right + jump |
 
 These are defaults; adjust to user requirements and scope.
+
+### FPS horde / survival (short addendum)
+
+- **Stack:** pointer lock + WASD + **hitscan** (or projectiles); **one `config` module** for weapon, enemy tuning, **spawn curve**, arena **margins**.
+- **MVP slice:** bounded **arena**, chase AI, **contact or ranged** damage, **shoot feedback** (audio/visual), **time or score HUD**, **restart** that restores pointer-lock affordance (blocker/instructions).
+- Cross-check **Web FPS + DOM HUD** and **spawning** bullets in `SKILL.md` before calling the slice done.
