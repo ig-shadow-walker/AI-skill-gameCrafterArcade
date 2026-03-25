@@ -34,7 +34,8 @@ Game source code, assets, and build tooling can be added here as the project gro
 A small static site in **`website/`** explains what GameCrafter is for visitors who are not reading the repo directly.
 
 - **Local:** open `website/index.html` in a browser, or from the repo root run `npx --yes serve website` and visit the URL it prints.
-- **GitHub Pages:** the classic branch UI only serves from **`/`** or **`/docs`**. Either copy `website/*` into **`docs/`**, or add a workflow that deploys **`website/`** to the `gh-pages` branch / GitHub Pages artifact; any static host (Netlify, Cloudflare Pages, etc.) can also point at `website/` as the publish directory.
+- **GitHub Pages (your account):** push this repo to GitHub under your user or org. In the repo go to **Settings → Pages → Build and deployment → Source** and choose **GitHub Actions**. The workflow **`.github/workflows/deploy-website.yml`** uploads the **`website/`** folder on every push to **`main`**. After a successful run, the site is usually at **`https://<username>.github.io/<repo>/`** (exact URL appears in the workflow run and under **Settings → Pages**). If your default branch is not `main`, edit the `branches` list in that workflow file.
+- **Alternatives:** copy `website/*` into **`docs/`** and set Pages source to **Deploy from branch** → **`main`** → **`/docs`**; or use Netlify / Cloudflare Pages with **`website`** as the publish directory.
 
 ---
 
