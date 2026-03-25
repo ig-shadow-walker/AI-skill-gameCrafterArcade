@@ -1,6 +1,6 @@
 ---
 name: arcade-gamecrafter
-description: Skill id arcade-gamecrafter for the ig-shadow-walker/gameCrafter repo. User must reference arcade + gamecrafter (e.g. arcade gamecrafter, @arcade-gamecrafter). Arcade-style Three.js games—score, waves, arena FPS, twin-stick, runners, survival slices, restart loops, config ramps. Input—GameActionState + desktop/mobile binders, pointer-lock-safe fire, touch mode (see SKILL Input handling architecture). While building, ask about vibe and lighting at sensible milestones. Phases Idea→build spec + template roadmap A–H. Prefers asking over assuming; step-by-step or autonomous pacing.
+description: Skill id arcade-gamecrafter for the ig-shadow-walker/gameCrafter repo. User must reference arcade + gamecrafter (e.g. arcade gamecrafter, @arcade-gamecrafter). Arcade-style Three.js games—score, waves, arena FPS, twin-stick, runners, survival slices, restart loops, config ramps. Shooting games require visible shoot feedback (e.g. muzzle flash) on every shot unless user opts out. Input—GameActionState + desktop/mobile binders, pointer-lock-safe fire, touch mode (see SKILL Input handling architecture). While building, ask about vibe and lighting at sensible milestones. Phases Idea→build spec + template roadmap A–H. Prefers asking over assuming; step-by-step or autonomous pacing.
 ---
 
 # GameCrafter (arcade)
@@ -64,7 +64,7 @@ Use this as a **prompt checklist** whenever you are about to enter the listed ph
 | Next phase | Clarify if missing |
 |------------|-------------------|
 | **2 Design** | **Game over** vs endless; **target run length** (e.g. 60s–5m); **primary score** (points, time alive, wave #); camera/control per platform |
-| **3 Systems** | **Lives / continues?**; hitscan vs projectiles; **wave or spawn ramp**; local **high score** or session-only; pooling for bullets/enemies |
+| **3 Systems** | **Lives / continues?**; hitscan vs projectiles; **wave or spawn ramp**; local **high score** or session-only; pooling for bullets/enemies; **shoot visual feedback** (muzzle flash / equivalent) for any firing weapon |
 | **4 Content** | **Single arena vs lanes**; spawn layout; primitives vs GLTF for MVP; minimal **title / game over** copy |
 | **5 Presentation** | Score/time/**combo** HUD readability; **game over / restart** flow; juice budget on mobile; DOM HUD vs in-scene; **vibe** (mood, palette, references); **lighting** (key/fill, ambient, fog, shadows, performance) |
 | **6 Scope** | Smallest **one-more-run** loop; what proves **skill**, not content volume |
@@ -88,6 +88,7 @@ Unless the user overrides, steer toward **short, replayable sessions** and **rea
 - **Pressure:** **waves**, **spawn ramps**, or **speed-ups** over huge static worlds; single **arena**, **lanes**, or **chunks** beat sprawling maps for MVP.
 - **Tuning:** **one `config` module** for spawn interval, enemy counts, player speed, damage—see Phase 6 difficulty subsection.
 - **Juice:** hit feedback, brief SFX, HUD pulse—**cheap** on mobile (no heavy post stack by default).
+- **Shooting feedback (default):** if the game has **shooting**, **always** ship **visible feedback per shot**—e.g. **muzzle flash** (sprite/mesh/particles), brief emissive or **point-light** pulse, and/or crosshair HUD flash. Silent invisible firing is **not** the default; only skip if the user explicitly wants a bare prototype.
 - **Progression:** **session-local** high score or best wave is enough; long meta-progression is **stretch**, not MVP.
 
 ### Which track first? (decision)
@@ -169,7 +170,7 @@ Inventory only what the game needs. Typical buckets:
 |------|----------|
 | World | **Arena or lane bounds**; **spawning** + waves; **min distance from player**, retry or ring fallback |
 | Player | Movement; **iframed** invuln or lives; interaction minimal unless genre needs it |
-| Combat | Hit detection (hitscan / projectile); **i-frames** or HP; **hit-stop / flash** (subtle, mobile-safe) |
+| Combat | Hit detection (hitscan / projectile); **i-frames** or HP; **hit-stop / flash** (subtle, mobile-safe); **on-shot visual** (muzzle flash or equivalent) tied to the fire event |
 | Enemies | Simple chase / pattern / wave driver; **pooling** when counts spike |
 | Run flow | **Game state machine:** title → playing → **game over** → restart; pause optional |
 | Progression | **Score / combo / wave index**; `localStorage` high score optional; meta-unlocks = stretch |
@@ -204,7 +205,7 @@ Cover:
 - **Canvas lifecycle:** resize, `devicePixelRatio` cap on mobile, fullscreen where relevant
 - **HUD:** **large** score, combo, lives, wave—**DOM overlay** often best; avoid tiny text over busy 3D
 - **Game over / pause:** clear **CTA** (restart, try again); **restart** must restore input affordances (e.g. pointer-lock click target)
-- **Juice:** muzzle flash, crosshair pulse, brief chroma—**budget** particles and lights for 60/30 FPS targets
+- **Juice / shoot read:** **muzzle flash** (or equivalent) on **every** player shot is the **default MVP bar** for shooters—plus crosshair pulse, brief chroma where appropriate; **budget** particles/lights for 60/30 FPS on mobile (short duration, small bursts)
 - **Post-processing:** sparing on mobile; materials/fog over heavy composers
 - **Vibe:** overall mood, palette, tone (e.g. gritty, neon arcade, cozy low-poly)—tie to materials, sky, and HUD styling
 - **Lighting (Three.js):** directional key + fill, ambient level, color temperature, fog/sky; **shadows** only where performance allows (especially mobile); re-**ask** the user when implementing if Phase 2 left this open
@@ -253,6 +254,7 @@ Before coding, emit a **build spec** containing:
 8. **Spawning / bounds:** `minSpawnDistanceFromPlayer`, separate **margins** for player vs larger enemies, **clamp after movement** each frame to avoid tunneling into walls
 9. **Test plan:** manual **full run** per platform (start → game over → restart); pointer lock path if FPS
 10. **Score persistence** (optional): `localStorage` key names if high score is in MVP
+11. **Shoot feedback (if shooting):** specify how **muzzle flash** or equivalent is triggered on fire (in-scene vs HUD), duration, and mobile-safe fallbacks
 
 Then implement **MVP first** in small commits; match existing project patterns.
 
@@ -268,6 +270,10 @@ Then implement **MVP first** in small commits; match existing project patterns.
 - **Loading:** keep MVP asset set small; async setup with a simple “press start” gate if needed.
 - **Arcade perf:** cap active particles/lights; prefer **instancing** or merged geometry for many similar props; profile on target phones.
 
+### Shoot feedback (firearms / shooting)
+
+**Default:** Games where the **player shoots** (hitscan or projectile) must include **immediate visual feedback on each shot**—typically a **muzzle flash** (billboard/sprite, mesh spike, or short particle burst), optionally plus a **brief light** or **crosshair/HUD** pulse. Hook it to the same code path that **consumes** `firePressed` or fires the weapon so audio and VFX stay in sync. Keep it **lightweight** on phones (few particles, short lifetime). Do not treat this as optional polish unless the user explicitly requests a **silent / debug** pass.
+
 ### Web FPS + DOM HUD checklist
 
 | Topic | Pitfall / fix |
@@ -276,6 +282,7 @@ Then implement **MVP first** in small commits; match existing project patterns.
 | **Pointer lock target** | `PointerLockControls` locks the controls’ **`domElement`** (often `document.body`). Use **`document`** listeners with **capture** and/or both **`pointerdown` + `mousedown`** so **primary fire** works reliably while locked. |
 | **Restart / game state** | When overlays replace the “click to play” blocker, **restore** blocker/instructions on **restart** so the player can **lock the pointer** again. |
 | **AudioContext** | Often **suspended** until a user gesture; call **`resume()`** on first click / lock; optionally defer the first SFX until `state === "running"`. |
+| **Silent shooting** | **Avoid** shipping firing with **no** on-screen flash or pulse; default to **muzzle flash** (or twin-stick muzzle equivalent) + SFX unless the user opts out. |
 
 ### Input handling architecture (desktop + mobile)
 
@@ -328,6 +335,7 @@ Define in a game types module (e.g. `src/game/types.ts`). The game reads this ev
 - **`sessionActive()`:** desktop: `document.pointerLockElement === domElement`; mobile: `playing && !gameOver`. While inactive, skip simulation input (HUD may still update).
 - **Unified movement (keys + stick):** build `(sx, sy)` from WASD **or** `moveStickX` / `moveStickY` in touch mode. If length above a dead zone: `nx = sx / stickLen`, `nz = -sy / stickLen`; accelerate (e.g. `velocity.x -= nx * acc * dt * mag`, `velocity.z -= nz * acc * dt * mag` with `mag` tied to stick magnitude, capped). Cap speed, then apply **either** `applyWalk` (touch) **or** `PointerLockControls` moves (desktop).
 - **Firing:** `firePressed` stays latched until the game fires or clears it (reload blocking, empty mag, etc.); optionally **buffer** one shot through fire cooldown.
+- **Shoot feedback:** when a shot actually fires, trigger **muzzle flash** (or equivalent) in the same frame/tick so the player always sees that shooting happened.
 
 #### Audio / gesture policy
 

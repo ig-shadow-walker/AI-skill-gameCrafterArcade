@@ -72,8 +72,9 @@ For **Three.js FPS + touch**, use the canonical pattern in **`SKILL.md` → Inpu
 - Max random pick attempts before fallback
 - Fallback: ring or fixed spawn points around arena edge
 
-## Combat feedback (optional)
-- Hitscan tracer or debug line, muzzle HUD flash, crosshair pulse
+## Combat feedback (shooting games — default, not optional)
+- **Muzzle flash** (or equivalent in-scene/HUD pulse) on **every** shot the player fires—see **`SKILL.md` → Shoot feedback**; pair with SFX.
+- Optional extras: hitscan tracer or debug line, crosshair pulse, brief dynamic light.
 - Procedural or pooled SFX module (gesture-unlocked `AudioContext`)
 
 ## Types / toolchain (optional)

@@ -2,7 +2,7 @@
 
 **GameCrafter** is a workspace for designing and building **arcade-style 2D and 3D games** (score, waves, short sessions, restart loops) that target the **web, tablets, mobile devices, and desktop** (including wrapped or native-style apps). The technical backbone is **[Three.js](https://threejs.org/)**—full 3D or 2D-style via orthographic cameras, quads, sprites, and UI layers.
 
-The **arcade-gamecrafter** skill bundled here is **for arcade games specifically**: short, replayable sessions, clear score or survival pressure, and tight restart loops—not long-form RPGs or open-world scope unless you deliberately narrow the brief to an arcade slice.
+The **arcade-gamecrafter** skill bundled here is **for arcade games specifically**: short, replayable sessions, clear score or survival pressure, and tight restart loops—not long-form RPGs or open-world scope unless you deliberately narrow the brief to an arcade slice. For **shooting** games, the skill expects **visible feedback on each shot** (e.g. muzzle flash) unless you say otherwise.
 
 This repository is intentionally oriented around a **structured creative pipeline** so that high-level ideas (for example, “a first-person zombie survival arena” or “twin-stick wave shooter”) can be broken down into something implementable without skipping planning.
 
